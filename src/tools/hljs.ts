@@ -1,0 +1,12 @@
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import ts from 'highlight.js/lib/languages/typescript';
+import scss from 'highlight.js/lib/languages/scss';
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('js', javascript);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('typescript', ts);
+hljs.registerLanguage('ts', ts);
+hljs.registerLanguage('scss', scss);
+export default hljs;

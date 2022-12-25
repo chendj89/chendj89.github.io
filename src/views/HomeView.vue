@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Menu from "../components/menu.vue";
+import VCode from "../components/code.vue";
+</script>
 
 <template>
-  <main></main>
+  <div style="width:800px" class="ml-4 mt-4">
+    <Menu></Menu>
+    <VCode></VCode>
+  </div>
 </template>
