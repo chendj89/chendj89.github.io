@@ -1,0 +1,58 @@
+@import './base.css';
+
+.fileFloder {
+  display: inline-block;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  user-select: none;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  &.active {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #f9f9f9;
+    cursor: default;
+    z-index: 1;
+  }
+  &-title {
+    display: none;
+    height: 36px;
+    background: #ff5c00;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+  }
+  &-container {
+    width: 180px;
+    height: 180px;
+    display: inline-grid;
+    padding: 10px;
+    grid-gap: 10px;
+    transform-origin: left top;
+    transform: scale(0.2);
+    border-radius: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  &.active &-container {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    transform: none;
+  }
+  &-drag {
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    img {
+      display: block;
+    }
+  }
+}

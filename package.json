@@ -16,9 +16,11 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@iconify-json/bi": "^1.1.12",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.1",
     "@types/node": "^18.11.12",
+    "@vicons/fluent": "^0.12.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
@@ -35,6 +37,7 @@
     "typescript": "~4.7.4",
     "unocss": "^0.48.0",
     "unplugin-auto-import": "^0.12.1",
+    "unplugin-icons": "^0.14.15",
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.0",
     "vitest": "^0.25.6",
