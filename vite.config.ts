@@ -19,7 +19,7 @@ export default defineConfig({
         'vue',
         'vue-router',
         {
-          'naive-ui': ['n-card'],
+          'naive-ui': [],
         },
       ],
       defaultExportByFilename: false,
@@ -38,7 +38,7 @@ export default defineConfig({
       resolvers: [NaiveUiResolver()],
     }),
     Unocss(),
-    Icons(),
+    Icons({ autoInstall: true, compiler: 'vue3' }),
   ],
   resolve: {
     alias: {
