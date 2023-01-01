@@ -4,6 +4,11 @@ import getIssueContent from '@/tools/getIssueContent';
 import { NThing, NAvatar, NH2, NCard, NSpace, NEllipsis, NA, NSkeleton, NIcon, NButton } from 'naive-ui';
 import BiArrowUpShort from '~icons/bi/arrow-up-short';
 import BiArrowDownShort from '~icons/bi/arrow-down-short';
+import BiUiChecksGrid from '~icons/bi/ui-checks-grid';
+
+import useDialog from '@/tools/useDialog';
+import addIssue from './addIssue.vue';
+
 export interface Info {
   name: string;
   icon: string;
@@ -73,6 +78,7 @@ let app = new issueApp();
 export default defineComponent({
   props: Props,
   setup(props) {
+    const ins = getCurrentInstance();
     const list = ref<Info[]>([]);
     const updown = ref(0);
     const len = ref(0);
@@ -81,7 +87,7 @@ export default defineComponent({
         .request('GET ' + props.info.comments_url, {})
         .then((res) => res.json())
         .then((data) => {
-          let arr = [];
+          let arr:any[] = [];
           let ob = [];
           data.map((item: any) => {
             const content = getIssueContent(item.body);
@@ -115,9 +121,12 @@ export default defineComponent({
         updown.value++;
       }
     };
-    return { list, len, updown, upClick, downClick };
+    const setClick = () => {
+      useDialog(addIssue, ins, { title: '添加issue' });
+    };
+    return { list, len, updown, upClick, downClick, setClick };
   },
-  render(props) {
+  render(props: any) {
     return (
       <NCard contentStyle={contentStyle}>
         <NThing contentStyle={descriptionStyle} style={{ lineHeight: 0 }}>
@@ -128,6 +137,13 @@ export default defineComponent({
               <NEllipsis style={descStyle} lineClamp={1} tooltip={false} expandTrigger="click">
                 {props.info.desc}
               </NEllipsis>
+            ),
+            'header-extra': () => (
+              <NButton text onClick={this.setClick}>
+                <NIcon size={14}>
+                  <BiUiChecksGrid></BiUiChecksGrid>
+                </NIcon>{' '}
+              </NButton>
             ),
             default: () => (
               <>
@@ -162,12 +178,12 @@ export default defineComponent({
                 </div>
                 {this.len > 1 ? (
                   <div style="position:absolute;right:-11px;top:4px;cursor: pointer;">
-                    <NButton text style="display:block" onClick={this.upClick} style={{ opacity: this.updown > 0 ? 1 : 0 }}>
+                    <NButton text onClick={this.upClick} style={{ display: 'block', opacity: this.updown > 0 ? 1 : 0 }}>
                       <NIcon size={14} depth="3">
                         <BiArrowUpShort></BiArrowUpShort>
                       </NIcon>
                     </NButton>
-                    <NButton text style="display:block" onClick={this.downClick} style={{ opacity: this.updown <this.len-1 ? 1 : 0 }}>
+                    <NButton text onClick={this.downClick} style={{ display: 'block', opacity: this.updown < this.len - 1 ? 1 : 0 }}>
                       <NIcon size={14} depth="3">
                         <BiArrowDownShort></BiArrowDownShort>
                       </NIcon>
